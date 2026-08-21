@@ -1,6 +1,7 @@
 import requests
 import validators
 import time
+import sys
 
 while True:    
     try:
@@ -11,7 +12,7 @@ while True:
         print("Try again")
     except KeyboardInterrupt:
         print("\nTyping Interrupted")
-        break
+        sys.exit()
         
 while True:
     try:
@@ -34,5 +35,4 @@ while True:
 
     except KeyboardInterrupt:
         print("\nExiting...")
-        break
-        
+        sys.exit()
