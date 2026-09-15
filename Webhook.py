@@ -12,17 +12,16 @@ while True:
         webhook_url = input("Enter discord webhook URL: ").strip()
         if validators.url(webhook_url):
             break
-        print(f"Invalid URL: ['{webhook_url}']", "\nTry Again")
-
-        logger.error(f"invalid URL: {webhook_url}")
+        else:
+             print(f"Invalid URL: ['{webhook_url}']", "\nTry Again")
+             logger.error(f"invalid URL: {webhook_url}")
     except KeyboardInterrupt:
         print("\nTyping Interrupted")
         logger.error("Program stopped during URL input via KeyboardInterrupt.")
         sys.exit(1)
         
 while True:
-    try:
-        time.sleep(2)
+    try:        
         message = input("\nEnter Message to send through webhook[type: exit ; to exit]: ").strip()
         if message.lower() == "exit":
             break
@@ -30,6 +29,7 @@ while True:
         
         try:
             response = requests.post(webhook_url, json=data)
+            time.sleep(2)
             if response.status_code == 204:
                 print("\n---Sent---")
                 logger.info("message sent")
@@ -45,4 +45,4 @@ while True:
         print("\nExiting program...")
         logger.error("typing interrupted")
         sys.exit(1)
-        
+
