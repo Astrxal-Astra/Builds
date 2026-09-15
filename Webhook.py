@@ -14,10 +14,10 @@ while True:
             break
         print(f"Invalid URL: ['{webhook_url}']", "\nTry Again")
 
-        logging.error(f"invalid URL: {webhook_url}")
+        logger.error(f"invalid URL: {webhook_url}")
     except KeyboardInterrupt:
         print("\nTyping Interrupted")
-        logging.error("Program stopped during URL input via KeyboardInterrupt.")
+        logger.error("Program stopped during URL input via KeyboardInterrupt.")
         sys.exit(1)
         
 while True:
@@ -32,17 +32,17 @@ while True:
             response = requests.post(webhook_url, json=data)
             if response.status_code == 204:
                 print("\n---Sent---")
-                logging.info("message sent")
+                logger.info("message sent")
             else:
                 print(f"Not working: {response.status_code}")
                 print(response.text)
-                logging.error(f"discord rejected the message. Status: {response.status_code}")
+                logger.error(f"discord rejected the message. Status: {response.status_code}")
         except requests.exceptions.RequestException:
             print(f"Failed to send: {message}", "\nNO INTERNET, or Discord Servers are down (TRY AGAIN LATER)")                       
             logger.critical(f"couldn't send {message} due to unstable connection")
 
     except KeyboardInterrupt:
         print("\nExiting program...")
-        logging.error("typing interrupted")
+        logger.error("typing interrupted")
         sys.exit(1)
         
