@@ -14,7 +14,7 @@ while True:
             break
         else:
              print(f"Invalid URL: ['{webhook_url}']", "\nTry Again")
-             logger.error(f"invalid URL: {webhook_url}")
+             logger.error("invalid URL")
     except KeyboardInterrupt:
         print("\nTyping Interrupted")
         logger.error("Program stopped during URL input via KeyboardInterrupt.")
